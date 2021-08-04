@@ -17,7 +17,7 @@ jobs:
       - name: pull image
         run: docker pull ghcr.io/jemand771/latex-build:${{ matrix.docker-tag }}
       - name: print some stuff
-        run: echo "::set-output name=out-${{ matrix.docker-tag }}-${{ matrix.foo != "" }}-${{ matrix.bar != "" }}::${{ matrix.foo }}${{ matrix.bar }}"
+        run: echo "::set-output name=out-${{ matrix.docker-tag }}-${{ matrix.foo != '' }}-${{ matrix.bar != '' }}::${{ matrix.foo }}${{ matrix.bar }}"
   # results:
   #   runs-on: ubuntu-latest
   #   needs: benchmark
