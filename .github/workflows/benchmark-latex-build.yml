@@ -27,4 +27,4 @@ jobs:
     steps:
       - name: get results
         run: |
-          echo "${{ needs.benchmark.outputs.v1.4.0-true-true-true }}"
+          echo "${{ needs.benchmark.outputs.v140-true-true-true }}"
