@@ -22,4 +22,4 @@ jobs:
     needs: benchmark
     steps:
       - name: get results
-        run: echo ${{ needs.benchmark.outputs }}
+        run: echo ${{ toJSON(needs.benchmark.outputs) }}
