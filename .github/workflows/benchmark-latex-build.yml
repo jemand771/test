@@ -24,7 +24,7 @@ jobs:
           elapsed=$(/usr/bin/time -f %e bash -c "for i in {0..1}; do docker run -u $(id -u ${USER}):$(id -g ${USER}) --rm -v \"$(pwd)/Vorlage-Latex/Latex:/latex\" ghcr.io/jemand771/latex-build:${{ matrix.docker-tag }} &> /dev/null; rm -rf Vorlage-Latex/Latex/.build; done")
           name=$(echo ${{ matrix.docker-tag }} | tr . -)-${{ matrix.disable-diffpdf != '' }}-${{ matrix.disable-synctex != '' }}-${{ matrix.disable-pythontex != '' }}
           echo "$name"
-          echo "::set-output name=$(echo ${{ matrix.docker-tag }} | tr . -)-${{ matrix.disable-diffpdf != '' }}-${{ matrix.disable-synctex != '' }}-${{ matrix.disable-pythontex != '' }}::"
+          echo "::set-output name=$name::$elapsed"
   results:
     runs-on: ubuntu-latest
     needs: benchmark
