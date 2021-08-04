@@ -22,11 +22,12 @@ jobs:
       - name: benchmark
         run: |
           elapsed=$(/usr/bin/time -f %e bash -c "for i in {0..1}; do docker run -u $(id -u ${USER}):$(id -g ${USER}) --rm -v \"$(pwd)/Vorlage-Latex/Latex:/latex\" ghcr.io/jemand771/latex-build:${{ matrix.docker-tag }} &> /dev/null; rm -rf Vorlage-Latex/Latex/.build; done")
-          echo $(echo ${{ matrix.docker-tag }} | tr . -),${{ matrix.disable-diffpdf != '' }},${{ matrix.disable-synctex != '' }},${{ matrix.disable-pythontex != '' }},$elapsed > result.csv
+          key=${{ matrix.docker-tag }},${{ matrix.disable-diffpdf != '' }},${{ matrix.disable-synctex != '' }},${{ matrix.disable-pythontex != '' }}
+          echo $key,$elapsed > result.csv
       - name: upload result
         uses: actions/upload-artifact@v2
         with:
-          name: result
+          name: result-${{ matrix.docker-tag }},${{ matrix.disable-diffpdf != '' }},${{ matrix.disable-synctex != '' }},${{ matrix.disable-pythontex != '' }}
           path: result.csv
   results:
     runs-on: ubuntu-latest
