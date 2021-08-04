@@ -28,3 +28,5 @@ jobs:
       - name: get results
         run: |
           echo "${{ needs.benchmark.outputs.out-v1-4-0-true-true-true }}"
+          echo "${{ needs.benchmark.outputs }}"
+          echo "${{ toJSON(needs.benchmark.outputs) }}"
