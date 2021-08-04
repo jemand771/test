@@ -36,6 +36,4 @@ jobs:
       - name: download artifacts
         uses: actions/download-artifact@v2
       - name: get results
-        run: |
-          ls -lah
-          ls -lah *
+        run: cat /home/runner/work/test/test/result*
