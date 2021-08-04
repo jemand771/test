@@ -35,8 +35,6 @@ jobs:
     steps:
       - name: download artifacts
         uses: actions/download-artifact@v2
-        with:
-          name: result
       - name: get results
         run: |
           ls -lah
