@@ -16,6 +16,10 @@ jobs:
     steps:
       - name: pull image
         run: docker pull ghcr.io/jemand771/latex-build:${{ matrix.docker-tag }}
+      - name: clone repo
+        run: git clone https://github.com/DSczyrba/Vorlage-Latex
+      - name: benchmark
+        run: /usr/bin/time -f %e for i in {0..1}; do docker run -u $(id -u ${USER}):$(id -g ${USER}) --rm -v "$(pwd)/Vorlage-Latex/Latex:/latex" ghcr.io/jemand771/latex-build:${{ matrix.docker-tag }} &> /dev/null; rm -rf Vorlage-Latex/Latex/.build; done
       - name: print some stuff
         run: echo "::set-output name=out-${{ matrix.docker-tag }}-${{ matrix.foo != '' }}-${{ matrix.bar != '' }}::${{ matrix.foo }}${{ matrix.bar }}"
   # results:
