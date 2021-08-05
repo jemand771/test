@@ -46,18 +46,14 @@ jobs:
           path: results.csv
   print-table:
     runs-on: ubuntu-latest
-#    needs: prepare-results
+    needs: prepare-results
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
           python-version: "3.x"
       - run: pip install tabulate
-      - run: |
-          pwd
-          ls -lah
-          ls -lah *
       - uses: actions/download-artifact@v2
         with:
           name: results
-      - run: cat results.csv | python latex-benchmark-parser.py
+      - run: cat results.csv | python latex-build-benchmark-parser.py
