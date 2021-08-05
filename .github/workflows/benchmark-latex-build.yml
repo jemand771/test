@@ -10,11 +10,11 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        docker-tag: ["v1.4.0"]
+        docker-tag: ["v1.3.0", "v1.4.0"]
         build-type: ["clean", "incremental"]
         disable-diffpdf: ["", "1"]
-        disable-synctex: ["1"]
-        disable-pythontex: ["1"]
+        disable-synctex: ["", "1"]
+        disable-pythontex: ["", "1"]
     steps:
       - name: pull image
         run: docker pull ghcr.io/jemand771/latex-build:${{ matrix.docker-tag }}
