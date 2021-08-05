@@ -23,7 +23,7 @@ jobs:
       - name: initial build
         run: docker run -u $(id -u ${USER}):$(id -g ${USER}) --rm -v "$(pwd)/Vorlage-Latex/Latex:/latex" ghcr.io/jemand771/latex-build:${{ matrix.docker-tag }}
       - name: set key
-        run: echo "key=${{ matrix.docker-tag }}-${{ matrix.build-type }},${{ matrix.disable-diffpdf != '' }},${{ matrix.disable-synctex != '' }},${{ matrix.disable-pythontex != '' }}" >> $GITHUB_ENV
+        run: echo "key=${{ matrix.build-type }}-${{ matrix.docker-tag }},${{ matrix.disable-diffpdf != '' }},${{ matrix.disable-synctex != '' }},${{ matrix.disable-pythontex != '' }}" >> $GITHUB_ENV
       - name: benchmark
         run: |
           echo elapsed=$(/usr/bin/time -f %e bash -c "for i in {0..1}; do if [ "${{ matrix.build-type }}" = "clean" ]; then rm -rf Vorlage-Latex/Latex/.build; fi; docker run -u $(id -u ${USER}):$(id -g ${USER}) --rm -v \"$(pwd)/Vorlage-Latex/Latex:/latex\" -e DISABLE_DIFFPDF=${{ matrix.disable-diffpdf }} -e DISABLE_SYNCTEX=${{ matrix.disable-synctex }} -e DISABLE_PYTHONTEX=${{ matrix.disable-pythontex }} ghcr.io/jemand771/latex-build:${{ matrix.docker-tag }} &> /dev/null; done" 2>&1) >> $GITHUB_ENV
