@@ -11,7 +11,7 @@ def main():
         tag, *args, elapsed = r.split(",")
         args = text_header(args)
         lines.setdefault(tag, [])
-        lines[tag].append(elapsed)
+        lines[tag].append(round(float(elapsed) / 20, 3))
         if args not in header:
             header.append(args)
     lines = [[k, *v] for k, v in lines.items()]
