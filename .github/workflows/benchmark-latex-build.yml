@@ -19,11 +19,11 @@ jobs:
         run: docker pull ghcr.io/jemand771/latex-build:${{ matrix.docker-tag }}
       - name: clone repo
         run: git clone https://github.com/DSczyrba/Vorlage-Latex
+      - name: set key
+        run: echo "key=${{ matrix.docker-tag }},${{ matrix.disable-diffpdf != '' }},${{ matrix.disable-synctex != '' }},${{ matrix.disable-pythontex != '' }}" >> $GITHUB_ENV
       - name: benchmark
         run: |
           elapsed=$(/usr/bin/time -f %e bash -c "for i in {0..1}; do docker run -u $(id -u ${USER}):$(id -g ${USER}) --rm -v \"$(pwd)/Vorlage-Latex/Latex:/latex\" ghcr.io/jemand771/latex-build:${{ matrix.docker-tag }} &> /dev/null; rm -rf Vorlage-Latex/Latex/.build; done")
-          echo "key=${{ matrix.docker-tag }},${{ matrix.disable-diffpdf != '' }},${{ matrix.disable-synctex != '' }},${{ matrix.disable-pythontex != '' }}" >> $GITHUB_ENV
-          echo "key=${{ matrix.docker-tag }},${{ matrix.disable-diffpdf != '' }},${{ matrix.disable-synctex != '' }},${{ matrix.disable-pythontex != '' }}"
           echo ${{ env.key }},$elapsed > result.csv
           echo ${{ env.key }},$elapsed
       - name: upload result
