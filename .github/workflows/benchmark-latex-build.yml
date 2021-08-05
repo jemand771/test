@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        docker-tag: ["v1.3.0", "v1.4.0"]
+        docker-tag: ["v1.3.0", "v1.4.0", "experimental"]
         build-type: ["clean", "incremental"]
         disable-diffpdf: ["", "1"]
         disable-synctex: ["", "1"]
