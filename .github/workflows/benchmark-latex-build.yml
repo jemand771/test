@@ -23,7 +23,7 @@ jobs:
         run: echo "key=${{ matrix.docker-tag }},${{ matrix.disable-diffpdf != '' }},${{ matrix.disable-synctex != '' }},${{ matrix.disable-pythontex != '' }}" >> $GITHUB_ENV
       - name: benchmark
         run: |
-          elapsed=$(/usr/bin/time -f %e bash -c "for i in {0..1}; do docker run -u $(id -u ${USER}):$(id -g ${USER}) --rm -v \"$(pwd)/Vorlage-Latex/Latex:/latex\" ghcr.io/jemand771/latex-build:${{ matrix.docker-tag }} &> /dev/null; rm -rf Vorlage-Latex/Latex/.build; done")
+          echo elapsed=$(/usr/bin/time -f %e bash -c "for i in {0..1}; do docker run -u $(id -u ${USER}):$(id -g ${USER}) --rm -v \"$(pwd)/Vorlage-Latex/Latex:/latex\" ghcr.io/jemand771/latex-build:${{ matrix.docker-tag }} &> /dev/null; rm -rf Vorlage-Latex/Latex/.build; done") >> $GITHUB_ENV
           echo ${{ env.key }},$elapsed > result.csv
           echo ${{ env.key }},$elapsed
       - name: upload result
