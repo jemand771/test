@@ -11,8 +11,8 @@ jobs:
       fail-fast: true
       matrix:
         disable-diffpdf: ["", "1"]
-        disable-synctex: ["", "1"]
-        disable-pythontex: ["", "1"]
+        disable-synctex: ["1"]
+        disable-pythontex: ["1"]
         docker-tag: ["v1.4.0"]
     steps:
       - name: pull image
@@ -36,7 +36,7 @@ jobs:
       - name: download artifacts
         uses: actions/download-artifact@v2
       - name: aggregate results
-        run: find /home/runner/work/test/test -type f -exec cat {} + > results.csv
+        run: find /home/runner/work/test/test -type f ! -name 'results.csv' -exec cat {} + > results.csv
       - name: upload super-results
         uses: actions/upload-artifact@v2
         with:
