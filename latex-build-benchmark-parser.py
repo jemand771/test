@@ -20,7 +20,7 @@ def main():
 
 def text_header(args):
     
-    return ",".join(x for x, control in zip(["diff-pdf", "synctex", "pythontex"], args) if control == "true")
+    return ",".join(x for x, control in zip(["diff-pdf", "synctex", "pythontex"], args) if control == "false") or "plain"
 
 
 if __name__ == "__main__":
