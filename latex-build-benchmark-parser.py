@@ -1,3 +1,4 @@
+import os
 import sys
 
 from tabulate import tabulate
@@ -15,7 +16,7 @@ def main():
         if args not in header:
             header.append(args)
     lines = [[k, *v] for k, v in lines.items()]
-    print(tabulate(lines, headers=header, tablefmt="pretty"))
+    print(tabulate(lines, headers=header, tablefmt=os.environ.get("tablefmt")))
 
 
 def text_header(args):
