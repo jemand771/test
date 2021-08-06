@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  benchmark:
+  print:
     runs-on: ubuntu-latest
     steps:
       - run: echo ${{ toJSON(github) }}
