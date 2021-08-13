@@ -28,9 +28,9 @@ jobs:
           flavor: |
             latest=false
           tags: |
-            type=match,pattern=v(\d+\.\d+\.\d+),value=${{ github.event.inputs.webssh-revision }}
-            type=match,pattern=v\d+\.(\d+\.\d+),value=${{ github.event.inputs.webssh-revision }}
-            type=match,pattern=v\d+\.\d+\.(\d),value=${{ github.event.inputs.webssh-revision }}
+            type=semver,pattern={{version}},value=${{ github.event.inputs.webssh-revision }}
+            type=semver,pattern={{major}}{{minor}},value=${{ github.event.inputs.webssh-revision }}
+            type=semver,pattern={{major}},value=${{ github.event.inputs.webssh-revision }}
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       - name: Set up Docker Buildx
