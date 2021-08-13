@@ -25,6 +25,7 @@ jobs:
         with:
           images: |
             ghcr.io/jemand771/webssh
+            ${{ env.INPUT_WEBSSHREVISION }}
           flavor: |
             latest=false
           tags: |
