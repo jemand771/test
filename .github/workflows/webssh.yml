@@ -2,13 +2,11 @@ name: webssh
 
 on:
   workflow_dispatch:
-
-
-inputs:
-  webssh revision:
-    description: "webssh revision"
-    required: true
-    default: "master"
+    inputs:
+      websshRevision:
+        description: "webssh revision"
+        required: true
+        default: "master"
 
 jobs:
   buildx:
@@ -20,7 +18,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: "huashengdun/webssh"
-          ref: $INPUT_WEBSSH_REVISION
+          ref: $INPUT_WEBSSHREVISION
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v3
