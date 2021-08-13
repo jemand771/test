@@ -28,7 +28,9 @@ jobs:
           flavor: |
             latest=false
           tags: |
-            type=semver,pattern={{version}},value=${{ env.INPUT_WEBSSHREVISION }}
+            type=match,pattern=v(\d+\.\d+\.\d+),value=${{ env.INPUT_WEBSSHREVISION }}
+            type=match,pattern=v\d+\.(\d+\.\d+),value=${{ env.INPUT_WEBSSHREVISION }}
+            type=match,pattern=v\d+\.\d+\.(\d),value=${{ env.INPUT_WEBSSHREVISION }}
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       - name: Set up Docker Buildx
