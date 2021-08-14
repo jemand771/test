@@ -48,7 +48,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: /tmp/.buildx-cache
-          key: buildx-${{ runner.os }}-${{ github.sha }}
+          key: buildx-${{ runner.os }}-${{ github.event.inputs.webssh-revision }}
           restore-keys: |
             buildx-${{ runner.os }}-
             buildx-
