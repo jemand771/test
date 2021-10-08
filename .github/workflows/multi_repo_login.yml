@@ -55,3 +55,4 @@ jobs:
         run: |
           docker load --input /tmp/myimage.tar
           docker image ls -a
+# TODO regex (?) for statping images -> push them
