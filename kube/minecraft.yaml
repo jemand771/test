@@ -19,6 +19,9 @@ spec:
           image: itzg/minecraft-server:java11
           ports:
             - containerPort: 80
+          env:
+            - name: EULA
+            - value: true
 ---
 apiVersion: v1
 kind: Service
