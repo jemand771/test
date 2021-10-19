@@ -17,6 +17,8 @@ spec:
       containers:
         - name: minecraft
           image: itzg/minecraft-server:java11
+          stdin: true
+          tty: true
           ports:
             - containerPort: 25565
               hostPort: 25565
