@@ -32,9 +32,9 @@ kind: Service
 metadata:
   name: minecraft
 spec:
+  type: NodePort
   ports:
-    - name: mc-port
-      port: 25565
-      protocol: TCP
+    - port: 25565
+      nodePort: 25565
   selector:
     app: minecraft
