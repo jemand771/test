@@ -1,0 +1,21 @@
+name: Deploy
+
+on:
+  - pull_request
+
+jobs:
+  deploy:
+    name: Deploy preview
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - uses: altinukshini/deployment-action@releases/v1
+        name: Create GitHub deployment
+        with:
+          token: ${{ github.token }}
+          target_url: https://example.com
+          environment: preview
+          transient_environment: true
+          pr: true
+          pr_id: ${{ github.event.number }}
