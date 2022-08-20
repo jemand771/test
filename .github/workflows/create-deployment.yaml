@@ -10,12 +10,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - uses: altinukshini/deployment-action@releases/v1
+      - uses: chrnorm/deployment-action@v2
         name: Create GitHub deployment
         with:
           token: ${{ github.token }}
-          target_url: https://example.com
+          initial-status: pending
           environment: preview
-          transient_environment: true
-          pr: true
-          pr_id: ${{ github.event.number }}
+          transient-environment: true
