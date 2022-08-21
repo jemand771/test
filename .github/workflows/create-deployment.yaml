@@ -8,15 +8,26 @@ on:
 
 jobs:
   deploy:
-    if: github.event.sender.login == github.repository_owner && (github.event_name == 'pull_request' || github.event.issue.pull_request && github.event.comment.body == '/deploy')
+    if: github.event.sender.login == github.repository_owner
     name: Deploy preview
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v1
+        # https://github.com/chrnorm/deployment-action
+        # commit by trusted person
       - uses: chrnorm/deployment-action@v2
+        if: github.event_name == 'pull_request'
         name: Create GitHub deployment
         with:
           token: ${{ github.token }}
           initial-status: pending
           environment: preview-${{ github.event.number }}
+        # manual deploy
+      - uses: chrnorm/deployment-action@v2
+        if: github.event.issue.pull_request && github.event.comment.body == '/deploy'
+        name: Create GitHub deployment
+        with:
+          token: ${{ github.token }}
+          initial-status: pending
+          environment: preview-${{ github.event.issue.number }}
