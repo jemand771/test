@@ -1,0 +1,22 @@
+# this file has been generated using magic
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: preview-631788353
+  namespace: argocd
+  annotations:
+    gapd.jemand771.net/source-repo-id: "379029058"
+    gapd.jemand771.net/deployment-id: "631788353"
+spec:
+  destination:
+    namespace: preview-631788353
+    server: https://kubernetes.default.svc
+  project: preview
+  source:
+    path: deployments\631788353
+    repoURL: https://github.com/jemand771/test.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true
