@@ -18,3 +18,9 @@ jobs:
           initial-status: pending
           environment: preview-${{ github.event.number }}
           # transient-environment: true
+      - name: Mark GitHub deployment inactive
+        uses: strumwolf/delete-deployment-environment@v2
+        with:
+          token: ${{ github.token }}
+          environment: preview
+          onlyRemoveDeployments: true
