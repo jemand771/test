@@ -2,9 +2,13 @@ name: Deploy
 
 on:
   pull_request:
+  issue_comment:
+    types:
+      - created
 
 jobs:
   deploy:
+    if: github.event.sender.login == github.repository_owner && (github.event_name == 'pull_request' || github.event.issue.pull_request && github.event.comment.body == '/deploy')
     name: Deploy preview
     runs-on: ubuntu-latest
 
@@ -15,3 +19,4 @@ jobs:
         with:
           token: ${{ github.token }}
           initial-status: pending
+          environment: preview-${{ github.event.number }}
