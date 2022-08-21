@@ -14,6 +14,6 @@ jobs:
       - name: Mark GitHub deployment inactive
         uses: strumwolf/delete-deployment-environment@v2
         with:
-          token: ${{ github.token }}
+          token: ${{ secrets.DEPLOY_TOKEN }}
           environment: preview-${{ github.event.number }}
           onlyDeactivateDeployments: true
