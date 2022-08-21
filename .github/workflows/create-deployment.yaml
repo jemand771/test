@@ -31,3 +31,4 @@ jobs:
           token: ${{ github.token }}
           initial-status: pending
           environment: preview-${{ github.event.issue.number }}
+          ref: refs/pull/${{ github.event.issue.number }}/merge
