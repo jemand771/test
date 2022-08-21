@@ -13,7 +13,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
         # https://github.com/chrnorm/deployment-action
         # commit by trusted person
       - uses: chrnorm/deployment-action@v2
@@ -31,4 +30,4 @@ jobs:
           token: ${{ github.token }}
           initial-status: pending
           environment: preview-${{ github.event.issue.number }}
-          ref: refs/pull/${{ github.event.issue.number }}/merge
+          ref: refs/pull/${{ github.event.issue.number }}/head
