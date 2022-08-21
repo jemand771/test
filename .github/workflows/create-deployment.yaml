@@ -7,7 +7,6 @@ jobs:
   deploy:
     name: Deploy preview
     runs-on: ubuntu-latest
-    environment: preview
 
     steps:
       - uses: actions/checkout@v1
@@ -16,11 +15,3 @@ jobs:
         with:
           token: ${{ github.token }}
           initial-status: pending
-          environment: preview-${{ github.event.number }}
-          # transient-environment: true
-      - name: Mark GitHub deployment inactive
-        uses: strumwolf/delete-deployment-environment@v2
-        with:
-          token: ${{ github.token }}
-          environment: preview
-          onlyRemoveDeployments: true

@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # https://github.com/strumwolf/delete-deployment-environment
       - name: Mark GitHub deployment inactive
         uses: strumwolf/delete-deployment-environment@v2
         with:
