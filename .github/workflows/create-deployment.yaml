@@ -15,5 +15,5 @@ jobs:
         with:
           token: ${{ github.token }}
           initial-status: pending
-          environment: preview
-          transient-environment: true
+          environment: preview-${{ github.event.number }}
+          # transient-environment: true
