@@ -10,10 +10,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - uses: chrnorm/deployment-action@v2
+      - uses: bobheadxi/deployments@v1
         name: Create GitHub deployment
         with:
           token: ${{ github.token }}
-          initial-status: pending
-          environment: preview
-          transient-environment: true
+          env: preview-${{ github.event.number }}
+          step: start
