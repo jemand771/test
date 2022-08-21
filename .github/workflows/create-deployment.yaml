@@ -13,7 +13,7 @@ jobs:
       - uses: chrnorm/deployment-action@v2
         name: Create GitHub deployment
         with:
-          token: ${{ github.token }}
+          token: ${{ secrets.GITHUB_DEPLOY_TOKEN }}
           initial-status: pending
           environment: preview-${{ github.event.number }}
           # transient-environment: true
