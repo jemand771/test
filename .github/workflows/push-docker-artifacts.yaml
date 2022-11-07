@@ -1,0 +1,15 @@
+name: Push docker image artifacts
+on:
+  workflow_run:
+    workflows:
+      - docker-build
+    types:
+      - completed
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: print artifacts url
+        run: echo ${{ github.event.workflow_run.artifacts_url }}
