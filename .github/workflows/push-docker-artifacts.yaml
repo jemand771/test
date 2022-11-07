@@ -11,5 +11,27 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
-      - name: print artifacts url
-        run: echo ${{ github.event.workflow_run.artifacts_url }}
+      - name: Download images
+        uses: actions/github-script@v3.1.0
+        with:
+          script: |
+            var artifacts = await github.actions.listWorkflowRunArtifacts({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                run_id: ${{github.event.workflow_run.id }},
+            });
+            var matchArtifact = artifacts.data.artifacts.filter((artifact) => {
+              return artifact.name == "docker-images"
+            })[0];
+            var download = await github.actions.downloadArtifact({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                artifact_id: matchArtifact.id,
+                archive_format: 'zip',
+            });
+            var fs = require('fs');
+            fs.writeFileSync('${{github.workspace}}/docker-images.zip', Buffer.from(download.data));
+      - run: unzip docker-images.zip
+      - name: import images
+        run: for file in *.tar; do docker load < $file; done
+      - run: docker image ls
