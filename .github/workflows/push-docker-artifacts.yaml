@@ -36,4 +36,4 @@ jobs:
         run: for file in *.tar; do docker load < $file; done
       - run: docker image ls
       - name: push all images
-        run: for image in "$(docker image ls --format '{{.Repository}}' | sort | uniq)"; do echo pushing $image; docker push $image; done
+        run: for image in $(docker image ls --format '{{.Repository}}' | sort | uniq); do echo pushing $image; docker push $image; done
