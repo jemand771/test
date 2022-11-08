@@ -37,4 +37,4 @@ jobs:
       - run: docker image ls
       - name: push all images
         # TODO this is shit
-        run: for image in $(docker image ls --format '{{.Repository}}:{{.Tag}}' | sort | uniq); do echo pushing $image; docker push $image || true; done
+        run: for image in $(cat docker-images.txt); do echo pushing $image; docker push $image; done
