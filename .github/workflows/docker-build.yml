@@ -11,6 +11,6 @@ jobs:
       - uses: jemand771/docker-build-action@main
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          push: ${{ github.event != 'pull_request' }}
+          push: ${{ github.event_name != 'pull_request' }}
           artifact: ${{ github.event_name == 'pull_request' }}
           platforms: linux/amd64
