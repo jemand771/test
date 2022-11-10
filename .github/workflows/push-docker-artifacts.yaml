@@ -9,38 +9,9 @@ on:
 jobs:
   push:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'pull_requst' }}
     steps:
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v1
+        uses: jemand771/push-docker-artifact@main
         with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ github.token }}
-      - name: Download images
-        uses: actions/github-script@v3.1.0
-        with:
-          script: |
-            var artifacts = await github.actions.listWorkflowRunArtifacts({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                run_id: ${{github.event.workflow_run.id }},
-            });
-            var matchArtifact = artifacts.data.artifacts.filter((artifact) => {
-              return artifact.name == "docker-images"
-            })[0];
-            var download = await github.actions.downloadArtifact({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                artifact_id: matchArtifact.id,
-                archive_format: 'zip',
-            });
-            var fs = require('fs');
-            fs.writeFileSync('${{github.workspace}}/docker-images.zip', Buffer.from(download.data));
-      - run: unzip docker-images.zip
-      - name: import images
-        run: for file in *.tar; do docker load < $file; done
-      - run: docker image ls
-      - name: push all images
-        # TODO this is shit
-        run: for image in $(cat docker-images.txt); do echo pushing $image; docker push $image; done
+          GITHUB_TOKEN: ${{ github.token }}
