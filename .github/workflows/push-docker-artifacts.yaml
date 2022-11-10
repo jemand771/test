@@ -9,9 +9,9 @@ on:
 jobs:
   push:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event_name == 'pull_requst' }}
     steps:
       - name: Login to GitHub Container Registry
+        if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'pull_requst' }}
         uses: jemand771/push-docker-artifact@main
         with:
           GITHUB_TOKEN: ${{ github.token }}
