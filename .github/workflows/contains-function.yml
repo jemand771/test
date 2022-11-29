@@ -13,4 +13,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: run echo
-        run: echo {{ env.my_var }}
+        run: echo ${{ env.my_var }}
