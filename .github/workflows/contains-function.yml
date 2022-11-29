@@ -15,8 +15,8 @@ jobs:
       - name: run echo
         run: |
           echo hello: ${{ contains(env.my_var, 'hello') }}
-          echo hello with nl: ${{ contains(env.my_var, 'hello\n') }}
+          echo hello with nl: ${{ contains(env.my_var, 'hello\r\n') }}
           echo world: ${{ contains(env.my_var, 'world') }}
-          echo world with nl: ${{ contains(env.my_var, 'world\n') }}
+          echo world with nl: ${{ contains(env.my_var, 'world\r\n') }}
           echo 123: ${{ contains(env.my_var, '123') }}
-          echo 123 with nl: ${{ contains(env.my_var, '123\n') }}
+          echo 123 with nl: ${{ contains(env.my_var, '123\r\n') }}
