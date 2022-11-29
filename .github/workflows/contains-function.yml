@@ -1,0 +1,16 @@
+name: test contains function
+
+on:
+  push:
+
+env:
+  my_var: |
+    hello
+    world
+
+jobs:
+  foo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: run echo
+        run: echo {{ env.my_var }}
