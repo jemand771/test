@@ -13,4 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: run echo
-        run: echo ${{ env.my_var }}
+        run: |
+          echo hello: ${{ contains(env.my_var, 'hello') }}
+          echo hello with nl: ${{ contains(env.my_var, 'hello\n') }}
+          echo world: ${{ contains(env.my_var, 'world') }}
+          echo world with nl: ${{ contains(env.my_var, 'world\n') }}
+          echo 123: ${{ contains(env.my_var, '123') }}
+          echo 123 with nl: ${{ contains(env.my_var, '123\n') }}
