@@ -1,0 +1,14 @@
+x-uffizzi:
+  ingress:
+    service: nginx
+    port: 80
+  continuous_previews:
+    delete_preview_after: 1h
+
+# Vote application
+services:
+  redis:
+    image: redis:latest
+
+  nginx:
+    image: nginx
