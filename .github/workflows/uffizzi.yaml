@@ -35,6 +35,9 @@ jobs:
       compose-file-cache-key: ${{ needs.render-compose-file.outputs.compose-file-cache-key }}
       compose-file-cache-path: ${{ needs.render-compose-file.outputs.compose-file-cache-path }}
       server: https://preview.jemand771.net
+      username: ${{ secrets.uffizzi_user }}
+      password: ${{ secrets.uffizzi_pass }}
+      project: ${{ secrets.uffizzi_project }}
     permissions:
       contents: read
       pull-requests: write
@@ -48,6 +51,9 @@ jobs:
       compose-file-cache-key: ''
       compose-file-cache-path: docker-compose.rendered.yml
       server: https://preview.jemand771.net
+      username: ${{ secrets.uffizzi_user }}
+      password: ${{ secrets.uffizzi_pass }}
+      project: ${{ secrets.uffizzi_project }}
     permissions:
       contents: read
       pull-requests: write
