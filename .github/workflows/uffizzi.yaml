@@ -35,8 +35,8 @@ jobs:
       compose-file-cache-key: ${{ needs.render-compose-file.outputs.compose-file-cache-key }}
       compose-file-cache-path: ${{ needs.render-compose-file.outputs.compose-file-cache-path }}
       server: https://preview.jemand771.net
-      username: ${{ secrets.uffizzi_user }}
-      project: ${{ secrets.uffizzi_project }}
+      username: uffizzi-admin@jemand771.net
+      project: test-project
     secrets:
       password: ${{ secrets.uffizzi_pass }}
     permissions:
@@ -52,8 +52,8 @@ jobs:
       compose-file-cache-key: ''
       compose-file-cache-path: docker-compose.rendered.yml
       server: https://preview.jemand771.net
-      username: ${{ secrets.uffizzi_user }}
-      project: ${{ secrets.uffizzi_project }}
+      username: uffizzi-admin@jemand771.net
+      project: test-project
     secrets:
       password: ${{ secrets.uffizzi_pass }}
     permissions:
