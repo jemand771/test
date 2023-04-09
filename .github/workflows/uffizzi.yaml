@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Render Compose File
         run: |
-          rnvsubst < docker-compose.uffizzi.yaml > docker-compose.rendered.yml
+          envsubst < docker-compose.uffizzi.yaml > docker-compose.rendered.yml
           cat docker-compose.rendered.yml
       - name: Hash Rendered Compose File
         id: hash
