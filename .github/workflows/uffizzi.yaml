@@ -1,7 +1,7 @@
 name: Build Images and Deploy Preview Environment
 
 on:
-  pull_request:
+  pull_request_target:
     types: [opened,reopened,synchronize,closed]
 
 jobs:          
