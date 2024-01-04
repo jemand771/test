@@ -11,6 +11,7 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
           push_strategy: artifact
           platforms: linux/amd64,linux/arm64
+          tag-sha-short: true
           images:
             ghcr.io/jemand771/test-multiplatform-build-push
   push:
@@ -21,4 +22,3 @@ jobs:
       - uses: jemand771/push-docker-artifact@main
         with:
           GITHUB_TOKEN: ${{ github.token }}
-          tag-sha-short: true
