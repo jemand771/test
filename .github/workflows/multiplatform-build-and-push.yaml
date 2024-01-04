@@ -21,3 +21,4 @@ jobs:
       - uses: jemand771/push-docker-artifact@main
         with:
           GITHUB_TOKEN: ${{ github.token }}
+          tag-sha-short: true
