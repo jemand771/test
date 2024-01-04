@@ -1,0 +1,23 @@
+name: multiplatform build and push
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: jemand771/docker-build-action@main
+        with:
+          GITHUB_TOKEN: ${{ github.token }}
+          push_strategy: artifact
+          platforms: linux/amd64,linux/arm64
+          images:
+            ghcr.io/jemand771/test-multiplatform-build-push
+  push:
+    runs-on: ubuntu-latest
+    needs:
+      - build
+    steps:
+      - uses: jemand771/push-docker-artifact@main
+        with:
+          GITHUB_TOKEN: ${{ github.token }}
