@@ -38,7 +38,7 @@ jobs:
     needs: benchmark
     steps:
       - name: download artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4.1.7
       - name: aggregate results
         run: find /home/runner/work/test/test -type f ! -name 'results.csv' -exec cat {} + > results.csv
       - name: upload super-results
@@ -61,7 +61,7 @@ jobs:
         with:
           python-version: "3.x"
       - run: pip install tabulate
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v4.1.7
         with:
           name: results
       - run: cat results.csv | python latex-build-benchmark-parser.py | tee output.txt
